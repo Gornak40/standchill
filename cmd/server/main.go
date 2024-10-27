@@ -6,6 +6,7 @@ import (
 	"log/slog"
 	"net/http"
 
+	"github.com/Gornak40/standchill/internal/engine"
 	"github.com/Gornak40/standchill/internal/utils"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
@@ -19,11 +20,12 @@ func main() {
 	port := flag.Int("port", defPort, "Port for server")
 	flag.Parse()
 
+	e := engine.New()
+
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
-	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("welcome"))
-	})
+	r.Get("/", e.IndexHandler())
+	r.Post("/submit-logins", e.StandingsHandler())
 
 	addr := fmt.Sprintf(":%d", *port)
 	slog.Info("init server", slog.String("addr", addr))

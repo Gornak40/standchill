@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <title>StandChill</title>
+    <script src="https://unpkg.com/htmx.org@2.0.3"
+      integrity="sha384-0895/pl2MU10Hqc6jd4RvrthNlDiE9U1tWmX7WRESftEDRosgxNsQG/Ze9YMRzHq"
+      crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <h3>Генератор табличек для <a
+        href="https://algocourses.ru/d2024">Информатика
+        решает</a></h3>
+
+    <form hx-post="/submit-logins" hx-target="#link-output" hx-trigger="submit"
+      hx-indicator="#loading" hx-swap="innerHTML">
+      <label for="logins">Логины:</label><br>
+      <textarea type="text" name="logins" id="logins" rows="10"
+        placeholder="Введите логины"
+        required>
+      </textarea><br>
+      <button type="submit">Отправить</button>
+
+    </form>
+
+    <div>
+      <p id="link-output">Ссылка появится здесь после отправки логинов</p>
+      <p id="loading" class="htmx-indicator">Загрузка...</p>
+    </div>
+
+  </body>
+</html>
