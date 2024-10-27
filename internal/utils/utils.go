@@ -17,5 +17,6 @@ func Fatal(msg string, args ...any) {
 
 func Report(w http.ResponseWriter, err error) {
 	w.WriteHeader(http.StatusInternalServerError)
+	slog.Error("internal server error", ErrAttr(err))
 	w.Write([]byte(err.Error()))
 }
