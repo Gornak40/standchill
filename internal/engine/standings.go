@@ -21,7 +21,7 @@ const (
 )
 
 func (e *Engine) getLink(filter map[string]struct{}) (string, error) {
-	cmd := exec.Command("shoga", "-i", "55000")
+	cmd := exec.Command("shoga", "-i", "55000", "-m", "usr")
 	stdout, err := cmd.StdoutPipe()
 	if err != nil {
 		return "", err

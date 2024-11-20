@@ -26,6 +26,10 @@ func main() {
 	r.Use(middleware.Logger)
 	r.Get("/", e.IndexHandler())
 	r.Post("/submit-logins", e.StandingsHandler())
+	r.Post("/gen-filter", e.FilterHandler())
+	r.Get("/favicon.ico", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "favicon.ico")
+	})
 
 	addr := fmt.Sprintf(":%d", *port)
 	slog.Info("init server", slog.String("addr", addr))

@@ -6,6 +6,8 @@
     <script src="https://unpkg.com/htmx.org@2.0.3"
       integrity="sha384-0895/pl2MU10Hqc6jd4RvrthNlDiE9U1tWmX7WRESftEDRosgxNsQG/Ze9YMRzHq"
       crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
   </head>
   <body>
     <h3>Генератор табличек для <a
@@ -26,5 +28,29 @@
       <p id="link-output">Ссылка появится здесь после отправки логинов</p>
     </div>
 
+    <h3>Генератор фильтров для <a
+        href="https://algocourses.ru/d2024">Информатика
+        решает</a></h3>
+
+    <form hx-post="/gen-filter" hx-target="#filter-output" hx-trigger="submit"
+      hx-indicator="#loading2" hx-swap="innerHTML">
+      <label for="logins2">Логины:</label><br>
+      <textarea type="text" name="logins" id="logins2" rows="10"
+        placeholder="Введите логины"
+        required></textarea><br>
+      <button type="submit">Отправить</button>
+    </form>
+
+    <div>
+      <p id="loading2" class="htmx-indicator">Загрузка...</p>
+      <p id="filter-output">Фильтр появится здесь после отправки логинов</p>
+    </div>
+
   </body>
+
+  <script>
+    window.onload = function() {
+      new ClipboardJS('#copy-btn');
+    }
+  </script>
 </html>
